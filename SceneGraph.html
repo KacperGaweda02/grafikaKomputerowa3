@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Scene Graph 2D</title>
+<script>
+    var gra; 
+    var płótno;   
+    var rysunki; 
+    var LEWO_X = -4;    
+    var PRAWO_X = 4;
+    var DÓŁ_Y = -3;
+    var GÓRA_Y = 3;
+    var TŁO = "white";  
+    var rozmiarPiksela;  
+    var numerKlatki = 0; 
+    var obracającyWielokąt;
+    function stwórzŚwiat() {
+        gra = new ObiektZłożony();
+        gra.add(new ObiektTransformowany(new WypełnionyOktadecagonZLiniami(-3.4, 2.15)).setScale(1, 1));
+        gra.add(new ObiektTransformowany(new WypełnionyOktadecagonZLiniami(-1.20, 1.35)).setScale(1, 1));
+        gra.add(new Prostokąt(-2.3,1.75, 2.5, 0.15, "red", -20));
+        gra.add(new Trójkąt(-3.05,1.75,0.55,"purple"));
+        gra.add(new ObiektTransformowany(new WypełnionyOktadecagonZLiniami(-0.8, 0)).setScale(1, 1));
+        gra.add(new ObiektTransformowany(new WypełnionyOktadecagonZLiniami(1.8, -1)).setScale(1, 1));
+        gra.add(new Prostokąt(0.5,-0.5, 3, 0.25, "red", -20));
+        gra.add(new Trójkąt(-0.5,-0.5,0.8,"blue"));
+        gra.add(new ObiektTransformowany(new WypełnionyOktadecagonZLiniami(4.20, 2)).setScale(0.8, 0.8));
+        gra.add(new ObiektTransformowany(new WypełnionyOktadecagonZLiniami(1.45, 3)).setScale(0.8, 0.8));
+        gra.add(new Prostokąt(2.25,2, 2.5, 0.15, "red", -20));
+        gra.add(new Trójkąt(1.60,2,0.5,"green"));
+    }
+    function aktualizujKlatkę() {
+    numerKlatki++;
+    gra.subobiekty.forEach(function(węzeł) {
+        if (węzeł instanceof ObiektTransformowany && węzeł.obiekt instanceof WypełnionyOktadecagonZLiniami) {
+            var koło = węzeł.obiekt;
+            koło.setRotation(numerKlatki);
+        }
+    });
+}
+    function WęzełGrafuSceny() {
+        this.fillColor = null;   
+        this.strokeColor = null; 
+    }
+    WęzełGrafuSceny.prototype.doDraw = function(g) {
+        throw "doDraw not implemented in SceneGraphNode"
+    }
+    WęzełGrafuSceny.prototype.draw = function(g) {
+        rysunki.save();
+        if (this.fillColor) {
+            g.fillStyle = this.fillColor;
+        }
+        if (this.strokeColor) {
+            g.strokeStyle = this.strokeColor;
+        }
+        this.doDraw(g);
+        rysunki.restore();
+    }
+    WęzełGrafuSceny.prototype.setFillColor = function(color) {
+        this.fillColor = color;
+        return this;
+    }
+    WęzełGrafuSceny.prototype.setStrokeColor = function(color) {
+        this.strokeColor = color;
+        return this;
+    }
+    WęzełGrafuSceny.prototype.setColor = function(color) {
+        this.fillColor = color;
+        this.strokeColor = color;
+        return this;
+    }
+    function ObiektZłożony() {
+        WęzełGrafuSceny.call(this);  
+        this.subobiekty = [];  
+    }
+    ObiektZłożony.prototype = new WęzełGrafuSceny(); 
+    ObiektZłożony.prototype.add = function(node) {
+        this.subobiekty.push(node);
+        return this;
+    }
+    ObiektZłożony.prototype.doDraw = function(g) {
+        for (var i = 0; i < this.subobiekty.length; i++)
+            this.subobiekty[i].draw(g);
+    }
+    function ObiektTransformowany(obiekt) {
+        WęzełGrafuSceny.call(this);  
+        this.obiekt = obiekt;
+        this.rotationInDegrees = 0;
+        this.scaleX = 1;
+        this.scaleY = 1;
+        this.translateX = 0;
+        this.translateY = 0;
+    }
+    ObiektTransformowany.prototype = new WęzełGrafuSceny();  
+    ObiektTransformowany.prototype.setRotation = function(angle) {
+        this.rotationInDegrees = angle;
+        return this;
+    }
+    ObiektTransformowany.prototype.setScale = function(sx, sy) {
+        this.scaleX = sx;
+        this.scaleY = sy;
+        return this;
+    }
+    ObiektTransformowany.prototype.setTranslation = function(dx,dy) {
+        this.translateX = dx;
+        this.translateY = dy;
+        return this;
+    }
+    ObiektTransformowany.prototype.doDraw = function(g) {
+        g.save();
+        if (this.translateX != 0 || this.translateY != 0) {
+            g.translate(this.translateX, this.translateY);
+        }
+        if (this.rotationInDegrees != 0) {
+            g.rotate(this.rotationInDegrees/180*Math.PI);
+        }
+        if (this.scaleX != 1 || this.scaleY != 1) {
+            g.scale(this.scaleX, this.scaleY);
+        }
+        this.obiekt.draw(g);
+        g.restore();
+    }
+    function WypełnionyOktadecagonZLiniami(x, y) {
+    WęzełGrafuSceny.call(this);
+    this.x = x;
+    this.y = y;
+    this.rotationInDegrees = 0;
+}
+WypełnionyOktadecagonZLiniami.prototype = new WęzełGrafuSceny();
+WypełnionyOktadecagonZLiniami.prototype.setRotation = function(angle) {
+    this.rotationInDegrees = angle;
+    return this;
+};
+WypełnionyOktadecagonZLiniami.prototype.doDraw = function(g) {
+    const numSides = 15;
+    const radius = 0.5;
+    g.save();
+    g.translate(this.x, this.y);
+    g.rotate(this.rotationInDegrees * Math.PI / 180);
+    g.beginPath();
+    for (let i = 0; i < numSides; i++) {
+        const angle = 2 * Math.PI / numSides * i;
+        g.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+    }
+    g.closePath();
+    g.strokeStyle = "black";
+    g.fillStyle = "white";
+    g.fill();
+    g.stroke();
+    for (let i = 0; i < numSides; i++) {
+        const angle = 2 * Math.PI / numSides * i;
+        g.moveTo(0, 0);
+        g.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+        g.stroke();
+    }
+    g.restore();
+};
+function Prostokąt(x, y, szerokość, wysokość, kolor, rotacja) {
+    WęzełGrafuSceny.call(this);
+    this.x = x;
+    this.y = y;
+    this.szerokość = szerokość;
+    this.wysokość = wysokość;
+    this.kolor = kolor;
+    this.rotacja = rotacja;
+}
+Prostokąt.prototype = new WęzełGrafuSceny();
+Prostokąt.prototype.doDraw = function(g) {
+    g.save();
+    g.translate(this.x, this.y);
+    g.rotate(this.rotacja * Math.PI / 180);
+    g.fillStyle = this.kolor;
+    g.fillRect(-this.szerokość / 2, -this.wysokość / 2, this.szerokość, this.wysokość);
+    g.restore();
+};
+function Trójkąt(x, y, rozmiar, kolor) {
+    WęzełGrafuSceny.call(this);
+    this.x = x;
+    this.y = y;
+    this.rozmiar = rozmiar;
+    this.kolor = kolor;
+}
+Trójkąt.prototype = new WęzełGrafuSceny();
+Trójkąt.prototype.doDraw = function(g) {
+    g.fillStyle = this.kolor;
+    g.beginPath();
+    g.moveTo(this.x + 1.25 * this.rozmiar, this.y + (-0) * this.rozmiar);
+    g.lineTo(this.x + 2.0 * this.rozmiar, this.y + (-2.9) * this.rozmiar);
+    g.lineTo(this.x + 0.75 * this.rozmiar, this.y + (-2.9) * this.rozmiar);
+    g.closePath();
+    g.fill();
+};
+    function rysuj() {
+        rysunki.save();  
+        rysunki.fillStyle = TŁO;  
+        rysunki.fillRect(0,0,płótno.width,płótno.height);
+        rysunki.fillStyle = "black";
+        zastosujOgraniczenia(rysunki,LEWO_X,PRAWO_X,GÓRA_Y,DÓŁ_Y,false);
+        rysunki.lineWidth = rozmiarPiksela;  
+        gra.draw(rysunki);
+        rysunki.restore();
+    }
+    function zastosujOgraniczenia(g, xlewo, xpawo, ygóra, ydół, zachowajProporcje) {
+       var szerokość = płótno.width;   
+       var wysokość = płótno.height; 
+       if (zachowajProporcje) {
+          var proporcjaEkranu = Math.abs(wysokość / szerokość);
+          var proporcjaŻądana = Math.abs(( ydół-ygóra ) / ( xpawo-xlewo ));
+          var nadmiar;
+          if (proporcjaEkranu > proporcjaŻądana) {
+             nadmiar = (ydół-ygóra) * (proporcjaEkranu/proporcjaŻądana - 1);
+             ydół += nadmiar/2;
+             ygóra -= nadmiar/2;
+          }
+          else if (proporcjaEkranu < proporcjaŻądana) {
+             nadmiar = (xpawo-xlewo) * (proporcjaŻądana/proporcjaEkranu - 1);
+             xpawo += nadmiar/2;
+             xlewo -= nadmiar/2;
+          }
+       }
+       var szerokośćPiksela = Math.abs(( xpawo - xlewo ) / szerokość);
+       var wysokośćPiksela = Math.abs(( ydół - ygóra ) / wysokość);
+       rozmiarPiksela = Math.min(szerokośćPiksela,wysokośćPiksela);
+       g.scale( szerokość / (xpawo-xlewo), wysokość / (ydół-ygóra) );
+       g.translate( -xlewo, -ygóra );
+    }
+    var działanie = false;  
+    function klatka() {
+        if (działanie) {
+            aktualizujKlatkę();
+            rysuj();
+            requestAnimationFrame(klatka);
+        }
+    }
+    function zaznaczAnimacjęCheckbox() { 
+        var czyUruchomić = document.getElementById("animateCheck").checked;
+        if (czyUruchomić != działanie) {
+            działanie = czyUruchomić;
+            if (działanie)
+                requestAnimationFrame(klatka);
+        }
+    }
+    function init() {
+        płótno = document.getElementById("thecanvas");
+        if (!płótno.getContext) {
+            document.getElementById("message").innerHTML = "BŁĄD: Canvas nie jest obsługiwany";
+            return;
+        }
+        rysunki = płótno.getContext("2d");
+        document.getElementById("animateCheck").checked = false; 
+        document.getElementById("animateCheck").onchange = zaznaczAnimacjęCheckbox; 
+        stwórzŚwiat();
+        rysuj();
+    }
+</script>
+</head>
+<body onload="init()" style="background-color:#EEEEEE">
+<h3>Scene Graph 2D - Kacper Gawęda</h3>
+<noscript>
+   <p><b style="color:red">Błąd: Ta strona wymaga JavaScript, ale jest niedostępna.</b></p>
+</noscript>
+<p id="message"><label><input type="checkbox" id="animateCheck"><b>Uruchom animację</b></label></p>
+<div style="float:left; border: 2px solid black">
+<canvas id="thecanvas" width="800" height="600" style="display:block"></canvas>
+</div>
+</body>
+</html>
