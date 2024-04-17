@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+<!--
+  <path d="M 191.82 129.608 L 217.021 147.918 L 207.395 177.543 L 176.245 177.543 L 166.619 147.918 Z" style="stroke: rgb(0, 0, 0); paint-order: fill; fill: none; transform-box: fill-box; transform-origin: 50% 50%;" bx:shape="n-gon 191.82 156.106 15.98 26.498 5 0 1@5a7a0f48">
+    <animateTransform type="rotate" additive="sum" attributeName="transform" values="0;360" begin="0s" dur="3s" fill="freeze" repeatCount="indefinite" keyTimes="0; 1"/>
+  </path>
+  <path d="M 327.037 129.683 L 352.238 147.993 L 342.612 177.618 L 311.462 177.618 L 301.836 147.993 Z" style="stroke: rgb(0, 0, 0); paint-order: fill; fill: none; transform-box: fill-box; transform-origin: 50% 50%;" bx:shape="n-gon 327.037 156.181 15.98 26.498 5 0 1@935cbfa2">
+    <animateTransform type="rotate" additive="sum" attributeName="transform" values="0;360" dur="3s" fill="freeze" repeatCount="indefinite" keyTimes="0; 1"/>
+  </path>
+-->
+<!-- duży wiatrak -->
+  <path d="M 151.482 216.312 
+         L 161.982 216.312 
+         L 171.5755 212.142 
+         L 178.6 204.2415 
+         L 181.8445 194.2525 
+         L 180.7455 183.812 
+         L 175.4955 174.719 
+         L 166.901 168.545 
+         L 156.732 166.3645 
+         L 146.563 168.545 
+         L 137.9685 174.719 
+         L 132.6185 183.812 
+         L 131.6205 194.2525 
+         L 134.864 204.2415 
+         L 141.8885 212.142 
+         Z
+         M 151.482 216.312 L 157 192 
+         M 161.982 216.312 L 157 192 
+         M 171.5755 212.142 L 157 192 
+         M 178.6 204.2415 L 157 192 
+         M 181.8445 194.2525 L 157 192 
+         M 180.7455 183.812 L 157 192 
+         M 175.4955 174.719 L 157 192 
+         M 166.901 168.545 L 157 192 
+         M 156.732 166.3645 L 157 192 
+         M 146.563 168.545 L 157 192 
+         M 137.9685 174.719 L 157 192 
+         M 132.6185 183.812 L 157 192 
+         M 131.6205 194.2525 L 157 192 
+         M 134.864 204.2415 L 157 192 
+         M 141.8885 212.142 L 157 192 
+         " style="stroke: rgb(0, 0, 0); paint-order: fill; fill: none; transform-box: fill-box; transform-origin: 50% 50%;" bx:shape="n-gon 191.82 156.106 15.98 26.498 5 0 1@5a7a0f48">
+    <animateTransform type="rotate" additive="sum" attributeName="transform" values="0;360" begin="0s" dur="3s" fill="freeze" repeatCount="indefinite" keyTimes="0; 1"/>
+  </path>
+  <path d="M 276.482 261.312 
+         L 286.982 261.312 
+         L 296.5755 257.142 
+         L 303.6 249.2415 
+         L 306.8445 239.2525 
+         L 305.7455 228.812 
+         L 300.4955 219.719 
+         L 291.901 213.545 
+         L 281.732 211.3645 
+         L 271.563 213.545 
+         L 262.9685 219.719 
+         L 257.6185 228.812 
+         L 256.6205 239.2525 
+         L 259.864 249.2415 
+         L 266.8885 257.142 
+         Z
+         M 276.482 261.312 L 282 237 
+         M 286.982 261.312 L 282 237 
+         M 296.5755 257.142 L 282 237 
+         M 303.6 249.2415 L 282 237 
+         M 306.8445 239.2525 L 282 237 
+         M 305.7455 228.812 L 282 237 
+         M 300.4955 219.719 L 282 237 
+         M 291.901 213.545 L 282 237 
+         M 281.732 211.3645 L 282 237 
+         M 271.563 213.545 L 282 237 
+         M 262.9685 219.719 L 282 237 
+         M 257.6185 228.812 L 282 237 
+         M 256.6205 239.2525 L 282 237 
+         M 259.864 249.2415 L 282 237 
+         M 266.8885 257.142 L 282 237 
+         " style="stroke: rgb(0, 0, 0); paint-order: fill; fill: none; transform-box: fill-box; transform-origin: 50% 50%;" bx:shape="n-gon 191.82 156.106 15.98 26.498 5 0 1@5a7a0f48">
+    <animateTransform type="rotate" additive="sum" attributeName="transform" values="0;360" begin="0s" dur="3s" fill="freeze" repeatCount="indefinite" keyTimes="0; 1"/>
+</path>
+  <rect x="150" y="210" width="140" height="8" style="fill: rgb(255, 0, 0);" transform="rotate(20, 220, 214)"/>
+  <path d="M 205 300 L 235 300 L 220 214 L 205 300 Z" style="stroke: rgba(0, 0, 0, 0); fill: rgb(0, 0, 255);"/>
+  
+<!-- średni wiatrak -->
+<path d="M 30.482 128.312 
+         L 40.982 128.312 
+         L 50.5755 124.142 
+         L 57.6 116.2415 
+         L 60.8445 106.2525 
+         L 59.7455 95.812 
+         L 54.4955 86.719 
+         L 45.901 80.545 
+         L 35.732 78.3645 
+         L 25.563 80.545 
+         L 16.9685 86.719 
+         L 11.6185 95.812 
+         L 10.6205 106.2525 
+         L 13.864 116.2415 
+         L 20.8885 124.142 
+         Z
+         M 30.482 128.312 L 36 104 
+         M 40.982 128.312 L 36 104 
+         M 50.5755 124.142 L 36 104 
+         M 57.6 116.2415 L 36 104 
+         M 60.8445 106.2525 L 36 104 
+         M 59.7455 95.812 L 36 104 
+         M 54.4955 86.719 L 36 104 
+         M 45.901 80.545 L 36 104 
+         M 35.732 78.3645 L 36 104 
+         M 25.563 80.545 L 36 104 
+         M 16.9685 86.719 L 36 104 
+         M 11.6185 95.812 L 36 104 
+         M 10.6205 106.2525 L 36 104 
+         M 13.864 116.2415 L 36 104 
+         M 20.8885 124.142 L 36 104 
+         " style="stroke: rgb(0, 0, 0); paint-order: fill; fill: none; transform-box: fill-box; transform-origin: 50% 50%;" bx:shape="n-gon 191.82 156.106 15.98 26.498 5 0 1@5a7a0f48">
+    <animateTransform type="rotate" additive="sum" attributeName="transform" values="0;360" begin="0s" dur="3s" fill="freeze" repeatCount="indefinite" keyTimes="0; 1"/>
+</path>
+<path d="M 119.482 163.312 
+         L 129.982 163.312 
+         L 139.5755 159.142 
+         L 146.6 151.2415 
+         L 149.8445 141.2525 
+         L 148.7455 130.812 
+         L 143.4955 121.719 
+         L 134.901 115.545 
+         L 124.732 113.3645 
+         L 114.563 115.545 
+         L 105.9685 121.719 
+         L 100.6185 130.812 
+         L 99.6205 141.2525 
+         L 102.864 151.2415 
+         L 109.8885 159.142 
+         Z
+         M 119.482 163.312 L 125 139 
+         M 129.982 163.312 L 125 139 
+         M 139.5755 159.142 L 125 139 
+         M 146.6 151.2415 L 125 139 
+         M 149.8445 141.2525 L 125 139 
+         M 148.7455 130.812 L 125 139 
+         M 143.4955 121.719 L 125 139 
+         M 134.901 115.545 L 125 139 
+         M 124.732 113.3645 L 125 139 
+         M 114.563 115.545 L 125 139 
+         M 105.9685 121.719 L 125 139 
+         M 100.6185 130.812 L 125 139 
+         M 99.6205 141.2525 L 125 139 
+         M 102.864 151.2415 L 125 139 
+         M 109.8885 159.142 L 125 139 
+         " style="stroke: rgb(0, 0, 0); paint-order: fill; fill: none; transform-box: fill-box; transform-origin: 50% 50%;" bx:shape="n-gon 191.82 156.106 15.98 26.498 5 0 1@5a7a0f48">
+    <animateTransform type="rotate" additive="sum" attributeName="transform" values="0;360" begin="0s" dur="3s" fill="freeze" repeatCount="indefinite" keyTimes="0; 1"/>
+</path>
+  <rect x="30" y="117" width="100" height="6" style="fill: rgb(255, 0, 0);" transform="rotate(20, 80, 120)"/>
+  <path d="M 70 170 L 90 170 L 80 120 L 70 170 Z" style="stroke: rgba(0, 0, 0, 0); fill: rgb(128, 0, 128);"/>
+  
+<!-- mały wiatrak -->
+<path d="M 309.482 121.312 
+         L 319.982 121.312 
+         L 329.5755 117.142 
+         L 336.6 109.2415 
+         L 339.8445 99.2525 
+         L 338.7455 88.812 
+         L 333.4955 79.719 
+         L 324.901 73.545 
+         L 314.732 71.3645 
+         L 304.563 73.545 
+         L 295.9685 79.719 
+         L 290.6185 88.812 
+         L 289.6205 99.2525 
+         L 292.864 109.2415 
+         L 299.8885 117.142 
+         Z
+         M 309.482 121.312 L 315 97 
+         M 319.982 121.312 L 315 97 
+         M 329.5755 117.142 L 315 97 
+         M 336.6 109.2415 L 315 97 
+         M 339.8445 99.2525 L 315 97 
+         M 338.7455 88.812 L 315 97 
+         M 333.4955 79.719 L 315 97 
+         M 324.901 73.545 L 315 97 
+         M 314.732 71.3645 L 315 97 
+         M 304.563 73.545 L 315 97 
+         M 295.9685 79.719 L 315 97 
+         M 290.6185 88.812 L 315 97 
+         M 289.6205 99.2525 L 315 97 
+         M 292.864 109.2415 L 315 97 
+         M 299.8885 117.142 L 315 97 
+         " style="stroke: rgb(0, 0, 0); paint-order: fill; fill: none; transform-box: fill-box; transform-origin: 50% 50%;" bx:shape="n-gon 191.82 156.106 15.98 26.498 5 0 1@5a7a0f48">
+    <animateTransform type="rotate" additive="sum" attributeName="transform" values="0;360" begin="0s" dur="3s" fill="freeze" repeatCount="indefinite" keyTimes="0; 1"/>
+</path>
+<path d="M 379.482 148.312 
+         L 389.982 148.312 
+         L 399.5755 144.142 
+         L 406.6 136.2415 
+         L 409.8445 126.2525 
+         L 408.7455 115.812 
+         L 403.4955 106.719 
+         L 394.901 100.545 
+         L 384.732 98.3645 
+         L 374.563 100.545 
+         L 365.9685 106.719 
+         L 360.6185 115.812 
+         L 359.6205 126.2525 
+         L 362.864 136.2415 
+         L 369.8885 144.142 
+         Z
+         M 379.482 148.312 L 385 124 
+         M 389.982 148.312 L 385 124 
+         M 399.5755 144.142 L 385 124 
+         M 406.6 136.2415 L 385 124 
+         M 409.8445 126.2525 L 385 124 
+         M 408.7455 115.812 L 385 124 
+         M 403.4955 106.719 L 385 124 
+         M 394.901 100.545 L 385 124 
+         M 384.732 98.3645 L 385 124 
+         M 374.563 100.545 L 385 124 
+         M 365.9685 106.719 L 385 124 
+         M 360.6185 115.812 L 385 124 
+         M 359.6205 126.2525 L 385 124 
+         M 362.864 136.2415 L 385 124 
+         M 369.8885 144.142 L 385 124 
+         " style="stroke: rgb(0, 0, 0); paint-order: fill; fill: none; transform-box: fill-box; transform-origin: 50% 50%;" bx:shape="n-gon 191.82 156.106 15.98 26.498 5 0 1@5a7a0f48">
+    <animateTransform type="rotate" additive="sum" attributeName="transform" values="0;360" begin="0s" dur="3s" fill="freeze" repeatCount="indefinite" keyTimes="0; 1"/>
+</path>
+
+
+
+
+
+
+
+
+  <rect x="310" y="108" width="80" height="4" style="fill: rgb(255, 0, 0);" transform="rotate(20, 350, 110)"/>
+  <path d="M 342 150 L 358 150 L 350 110 L 342 150 Z" style="stroke: rgba(0, 0, 0, 0); fill: rgb(0, 128, 0);"/>
+</svg>
