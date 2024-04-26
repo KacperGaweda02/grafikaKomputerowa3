@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>OpenGL - Kacper Gawęda</title>
+
+<script src="glsim.js"></script>  <!-- load the OpenGL 1.1 simulation code -->
+
+<script>
+
+    let rotateX = 15;   // rotations of objects about the axes
+    let rotateY = -15;
+    let rotateZ = 0;
+    
+    let showPyramid = true;
+    let showSpiral = false;
+    
+    // ------------------- functions for drawing the pyramid -------------------
+    
+    function drawFifteenSidedPolygon(r, g, b) {
+        glColor3f(r, g, b);
+        glBegin(GL_POLYGON);
+        let angle = 0;
+        for (let i = 0; i < 15; i++) {
+            angle = i * (2 * Math.PI) / 15;
+            glVertex3f(0.5 * Math.cos(angle), 0.5 * Math.sin(angle), -0.5); // vertex on the base
+        }
+        glEnd();
+    }
+    
+    function drawSideTriangle(angle1, angle2, color) {
+        glBegin(GL_TRIANGLES);
+        glColor3f(color[0], color[1], color[2]); // set color
+        glVertex3f(0, 0, 0.5);  // top vertex
+        glVertex3f(0.5 * Math.cos(angle1), 0.5 * Math.sin(angle1), -0.5); // vertex on the base
+        glVertex3f(0.5 * Math.cos(angle2), 0.5 * Math.sin(angle2), -0.5); // vertex on the base
+        glEnd();
+    }
+    
+    function drawPyramid(size) {  // draws a pyramid with base side length = size
+    
+        glPushMatrix();
+        glScalef(size, size, size); // scale unit pyramid to desired size
+        
+        drawFifteenSidedPolygon(1, 0, 0); // red base
+        
+        for (let i = 0; i < 15; i++) {
+            glPushMatrix();
+            glRotatef(i * (360 / 15), 0, 0, 1); // rotate to draw each triangular side face
+            let color = [Math.random(), Math.random(), Math.random()]; // random color for each side
+            drawSideTriangle(i * (2 * Math.PI) / 15, (i + 1) * (2 * Math.PI) / 15, color);
+            glPopMatrix();
+        }
+        
+        glPopMatrix(); // Restore matrix to its state before pyramid() was called.
+    
+    }
+    
+    // ------------------- functions for drawing the spiral -------------------
+    
+    function drawSpiral() {
+    const numSpirals = 3; // Ilość spirali (zmieniona na 15)
+    const radius = 0.2; // Zmniejszamy promień dla lepszej widoczności
+    const arcLength = 0.1 / numSpirals; // Długość łuku (Ustawiona na 1/10 promienia, można dostosować)
+    const numSteps = Math.ceil(2 * Math.PI * numSpirals / arcLength); // Liczba kroków, aby osiągnąć 360 stopni dla wszystkich spirali
+
+    const angleStep = arcLength / radius; // Krok kąta w radianach
+    const zStep = 0.001; // Bardzo mała wartość, o którą zwiększamy oś z w każdej iteracji
+
+    glBegin(GL_LINE_STRIP);
+    for (let i = 0; i <= numSteps; i++) {
+        let angle = i * angleStep;
+        let x = radius * Math.cos(angle);
+        let y = radius * Math.sin(angle);
+
+        // Ustawianie koloru w zależności od kierunku spirali
+        let colorR = Math.abs(Math.cos(angle)); // Składowa czerwona
+        let colorG = Math.abs(Math.sin(angle)); // Składowa zielona
+        let colorB = 0.5; // Stała wartość składowej niebieskiej
+
+        glColor3f(colorR, colorG, colorB); // Ustawianie koloru w OpenGL
+        glVertex3f(x, y, i * zStep); // Zwiększamy oś z w każdej iteracji
+    }
+    glEnd();
+}
+
+    // ----------------------------------------------------------------------
+    
+    function display() {  // Draws the image.
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+                
+        glLoadIdentity();             // Set up modelview transform. 
+        glRotatef(rotateZ, 0, 0, 1);
+        glRotatef(rotateY, 0, 1, 0);
+        glRotatef(rotateX, 1, 0, 0);
+        
+        if (showPyramid) {
+            drawPyramid(1);
+        }
+        
+        if (showSpiral) {
+            drawSpiral();
+        }
+        
+    }
+    
+    function initGL() {
+        glMatrixMode(GL_PROJECTION);
+        glOrtho(-1, 1, -1, 1, -1, 1);
+        glMatrixMode(GL_MODELVIEW);
+        glEnable(GL_DEPTH_TEST);
+        glClearColor(0, 0, 0, 1);
+    }
+    
+    function doKeyDown(evt) {
+        let key = evt.keyCode;
+        if (key == 37) // left
+            rotateY -= 15;
+        else if (key == 39) // right
+            rotateY += 15;
+        else if (key == 40) // down
+            rotateX += 15;
+        else if (key == 38) // up
+            rotateX -= 15;
+        else if (key == 33) // page up
+            rotateZ += 15;
+        else if (key == 34) // page down
+            rotateZ -= 15;
+        else if (key == 36)  // home
+            rotateX = rotateY = rotateZ = 0;
+        else if (key == 49) { // '1' key
+            showPyramid = true;
+            showSpiral = false;
+        } else if (key == 50) { // '2' key
+            showPyramid = false;
+            showSpiral = true;
+        }
+        if (key >= 34 && key <= 40) {
+            evt.preventDefault();
+        }
+        display();
+    }
+    
+    function init() {  
+        try {
+            let canvas = document.getElementById("glcanvas");
+            if (!canvas) {
+                throw "Canvas element with ID 'glcanvas' not found.";
+            }
+            glsimUse(canvas); // Use the canvas with ID "glcanvas" for OpenGL drawing.
+        } catch (e) {
+            document.getElementById("canvas-holder").innerHTML =
+                "Sorry, an error occurred:<br>" + e;
+            return;
+        }
+        document.onkeydown = doKeyDown;
+        initGL();
+        display();
+    }
+
+</script>
+
+</head>
+
+<body onload="init()">
+
+<h3>OpenGL - Kacper Gawęda</h3>
+
+<noscript>
+<p><b>Sorry, this page requires JavaScript!</b></p>
+</noscript>
+
+<div id="canvas-holder">
+    <canvas id="glcanvas" width="500" height="500"></canvas>
+</div>
+
+</body>
+</html>
+
